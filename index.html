@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>AndrewGPT 問答系統</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #dddddd;
+    }
+    .response {
+      margin-top: 20px;
+      font-size: 18px;
+      min-height: 40px;
+    }
+    .counter {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>輸入問題，AndrewGPT 將為您解答</h2>
+    <input type="text" id="userInput" placeholder="請輸入您的問題">
+    <br>
+    <button onclick="askQuestion()">送出問題</button>
+    <div class="response" id="responseArea"></div>
+    <div class="counter" id="counter">剩餘免費次數: 3/3</div>
+  </div>
+
+  <script>
+    let freeTimes = 3;
+
+    function askQuestion() {
+      const input = document.getElementById("userInput").value.trim();
+      const responseArea = document.getElementById("responseArea");
+      const counter = document.getElementById("counter");
+
+      if (freeTimes > 0) {
+        responseArea.innerText = "AndrewGPT：出現問題，請稍後再試。";
+        freeTimes--;
+        counter.innerText = "剩餘免費次數: " + freeTimes + "/3";
+      } else {
+        responseArea.innerText = "每日免費次數已用盡，請隔日再試，或升級 AndrewGPT Plus。";
+        counter.innerText = "剩餘免費次數: 0/3";
+      }
+
+      document.getElementById("userInput").value = "";
+    }
+  </script>
+</body>
+</html>
